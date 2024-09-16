@@ -1,6 +1,5 @@
 package com.javarush.config;
 
-import com.javarush.dao.*;
 import com.javarush.domain.entity.*;
 import com.javarush.domain.enums.Feature;
 import com.javarush.domain.enums.Rating;
@@ -13,23 +12,6 @@ import java.util.Properties;
 public class HibernateUtil {
     private static HibernateUtil instance;
     private final SessionFactory sessionFactory;
-
-    private final ActorDAO actorDAO;
-    private final AddressDAO addressDAO;
-    private final CategoryDAO categoryDAO;
-    private final CityDAO cityDAO;
-    private final CountryDAO countryDAO;
-    private final CustomerDAO customerDAO;
-    private final FeatureDAO featureDAO;
-    private final FilmDAO filmDAO;
-    private final FilmTextDAO filmTextDAO;
-    private final InventoryDAO inventoryDAO;
-    private final LanguageDAO languageDAO;
-    private final PaymentDAO paymentDAO;
-    private final RatingDAO ratingDAO;
-    private final RentalDAO rentalDAO;
-    private final StoreDAO storeDAO;
-    private final StaffDAO staffDAO;
 
     private HibernateUtil() {
         Properties properties = getProperties();
@@ -53,23 +35,6 @@ public class HibernateUtil {
                 .addAnnotatedClass(Store.class)
                 .setProperties(properties)
                 .buildSessionFactory();
-
-        actorDAO = new ActorDAO(sessionFactory);
-        addressDAO = new AddressDAO(sessionFactory);
-        categoryDAO = new CategoryDAO(sessionFactory);
-        cityDAO = new CityDAO(sessionFactory);
-        countryDAO = new CountryDAO(sessionFactory);
-        customerDAO = new CustomerDAO(sessionFactory);
-        featureDAO = new FeatureDAO(sessionFactory);
-        filmDAO = new FilmDAO(sessionFactory);
-        filmTextDAO = new FilmTextDAO(sessionFactory);
-        inventoryDAO = new InventoryDAO(sessionFactory);
-        languageDAO = new LanguageDAO(sessionFactory);
-        paymentDAO = new PaymentDAO(sessionFactory);
-        ratingDAO = new RatingDAO(sessionFactory);
-        rentalDAO = new RentalDAO(sessionFactory);
-        storeDAO = new StoreDAO(sessionFactory);
-        staffDAO = new StaffDAO(sessionFactory);
     }
 
     private static Properties getProperties() {
@@ -89,69 +54,5 @@ public class HibernateUtil {
             instance = new HibernateUtil();
         }
         return instance.sessionFactory;
-    }
-
-    public ActorDAO getActorDAO() {
-        return actorDAO;
-    }
-
-    public AddressDAO getAddressDAO() {
-        return addressDAO;
-    }
-
-    public CategoryDAO getCategoryDAO() {
-        return categoryDAO;
-    }
-
-    public CityDAO getCityDAO() {
-        return cityDAO;
-    }
-
-    public CountryDAO getCountryDAO() {
-        return countryDAO;
-    }
-
-    public CustomerDAO getCustomerDAO() {
-        return customerDAO;
-    }
-
-    public FeatureDAO getFeatureDAO() {
-        return featureDAO;
-    }
-
-    public FilmDAO getFilmDAO() {
-        return filmDAO;
-    }
-
-    public FilmTextDAO getFilmTextDAO() {
-        return filmTextDAO;
-    }
-
-    public InventoryDAO getInventoryDAO() {
-        return inventoryDAO;
-    }
-
-    public LanguageDAO getLanguageDAO() {
-        return languageDAO;
-    }
-
-    public PaymentDAO getPaymentDAO() {
-        return paymentDAO;
-    }
-
-    public RatingDAO getRatingDAO() {
-        return ratingDAO;
-    }
-
-    public RentalDAO getRentalDAO() {
-        return rentalDAO;
-    }
-
-    public StoreDAO getStoreDAO() {
-        return storeDAO;
-    }
-
-    public StaffDAO getStaffDAO() {
-        return staffDAO;
     }
 }
